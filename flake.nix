@@ -17,7 +17,25 @@
         formatter = pkgs.alejandra;
       };
 
-      flake = {
+      flake = let
+        meta = import ./meta.nix;
+
+        inherit (inputs.nixpkgs) lib;
+      in {
+        nixosConfigurations =
+          meta.hosts
+          |> lib.mapAttrs (
+            hostname: host:
+              lib.nixosSystem {
+                system = host.system;
+                modules = [./hosts];
+
+                specialArgs = {
+                  inherit lib inputs host hostname;
+                  modules = ./modules/system;
+                };
+              }
+          );
       };
     };
 }
