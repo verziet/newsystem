@@ -15,6 +15,11 @@ in {
   users.defaultUserShell = pkgs.zsh |> mkOverride 999;
   programs.zsh.enable = true |> mkDefault;
 
+  environment.systemPackages = with pkgs; [
+    git
+    home-manager
+  ];
+
   nix.gc = {
     automatic = true |> mkDefault;
     dates = "weekly" |> mkDefault;
