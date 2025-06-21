@@ -1,0 +1,49 @@
+#!/bin/zsh
+
+function switch() {
+  case "$1" in
+    # switch system
+    system)
+      shift
+      nh os switch "$@"
+      ;;
+    # switch user
+    user)
+      shift
+      nh home switch "$@"
+      ;;
+    # switch
+    *) 
+      nh os switch "$@" || {
+        return 1
+      }
+
+      nh home switch "$@"
+      ;;
+  esac
+}
+
+function _switch() {
+  local -a subcmds
+  subcmds=(
+    'system:Build and activate a new NixOS configuration, and make it the boot default'
+    'user:Build and activate a new Home-manager configuration'
+  )
+
+  _describe 'command' subcmds
+}
+
+compdef _switch switch
+
+shell() {
+  nix shell --impure "${(@)argv/#/nixpkgs#}"
+}
+
+run() {
+  local pkgs="nixpkgs#$1"
+  shift
+  nix run --impure "$pkgs" -- "$@"
+}
+
+bindkey "^H" backward-kill-word
+bindkey "5~" kill-word
