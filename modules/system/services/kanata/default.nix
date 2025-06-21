@@ -6,10 +6,10 @@
 }: let
   moduleName = "kanata";
 
-	inherit (lib) mkDefault mkForce;
+  inherit (lib) mkDefault mkForce;
 in {
   config = lib.mkIf config.${moduleName}.enableModule {
-		# using these packages within kanata.kbd config
+    # using these packages within kanata.kbd config
     environment.systemPackages = with pkgs; [
       playerctl
       brightnessctl
@@ -23,11 +23,13 @@ in {
       keyboards.internalKeyboard = {
         devices = [];
 
-        extraDefCfg = ''
-          danger-enable-cmd yes ;; enable commands
-          process-unmapped-keys yes ;; keys undefined in defsrc will be processed
-          block-unmapped-keys yes ;; keys undefined in defsrc will be blocked
-        '' |> mkDefault;
+        extraDefCfg =
+          ''
+            danger-enable-cmd yes ;; enable commands
+            process-unmapped-keys yes ;; keys undefined in defsrc will be processed
+            block-unmapped-keys yes ;; keys undefined in defsrc will be blocked
+          ''
+          |> mkDefault;
 
         config = lib.readFile ./kanata.kbd |> mkDefault;
       };
