@@ -5,7 +5,7 @@
 }: let
   moduleName = "pipewire";
 
-	inherit (lib) mkDefault mkForce;
+  inherit (lib) mkDefault mkForce;
 in {
   config = lib.mkIf config.${moduleName}.enableModule {
     services.pipewire = {
@@ -13,10 +13,10 @@ in {
 
       pulse.enable = true |> mkDefault;
 
-			alsa = {
-				enable = true |> mkDefault;
-				support32Bit = true |> mkDefault;
-			};
+      alsa = {
+        enable = true |> mkDefault;
+        support32Bit = true |> mkDefault;
+      };
     };
 
     security.rtkit.enable = true |> mkDefault;
