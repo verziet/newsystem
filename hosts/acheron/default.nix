@@ -5,6 +5,8 @@
       "${modules}/hardware/networkmanager"
       "${modules}/hardware/pipewire"
 
+      "${modules}/services/kanata"
+
       "${modules}/desktop/hyprland"
     ]
     ++ [

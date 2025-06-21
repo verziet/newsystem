@@ -1,0 +1,70 @@
+;; link containing all keys and their definitions
+;; https://github.com/jtroo/kanata/blob/main/parser/src/keys/mod.rs
+
+;; all keys we're mapping
+(defsrc
+    `    1    2    3    4    5    6    7    8    9    0    -    =
+    ⭾   q    w    e    r    t    y    u    i    o    p    [    ]    \
+    ⇪    a    s    d    f    g    h    j    k    l    ;    '    ↩
+    ‹⇧   z    x    c    v    b    n    m    ,    .    /
+                             ␣
+)
+
+;; function for smoother typing with home row mods
+;; https://github.com/jtroo/kanata/discussions/1455
+(deftemplate charmod (char mod)
+    (switch
+        ((key-timing 3 less-than 250)) $char break
+        () (tap-hold-release-timeout 250 500 $char $mod $mod) break
+    )
+)
+
+(deflocalkeys-linux
+    mic 248
+)
+
+;; aliases
+(defalias
+    ;; home-row mods
+    a (t! charmod a lmet)
+    s (t! charmod s lalt)
+    d (t! charmod d lsft)
+    f (t! charmod f rctl)
+
+    j (t! charmod j rctl)
+    k (t! charmod k rsft)
+    l (t! charmod l ralt)
+    ; (t! charmod ; rmet)
+
+    ;; second layer toggle
+    ␣ (t! charmod spc (layer-toggle layer-1))
+
+    ◀◀ (cmd playerctl previous) ;; previous media
+    ▶⏸ (cmd playerctl play-pause) ;; play/pause media
+    ▶▶ (cmd playerctl next) ;; next media
+
+    🔉 (cmd wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1) ;; decrease volume by 5%
+    🔇 (cmd wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle) ;; toggle mute
+    🔊 (cmd wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1) ;; increase volume by 5%
+
+    🔅 (cmd brightnessctl s 5%- -n 1) ;; decrease brightness by 5%
+    🔆 (cmd brightnessctl s 5%+ -n 1) ;; increase brightness by 5%
+)
+
+;; main/default layer
+(deflayer (layer-0)
+    `    1    2    3    4    5    6    7    8    9    0    -    =
+    ⭾   q    w    e    r    t    y    u    i    o    p    [    ]    \
+    ⎋   @a   @s   @d   @f    g    h   @j   @k   @l   @;   '    ↩
+    ‹⇧   z    x    c    v    b    n    m    ,    .    /
+                            @␣
+)
+
+;; second layer, activated by holding the spacebar
+(deflayer (layer-1)
+    `    1    2    3    4    5    6    7    8    9    0    -    =
+    ⭾   🔇   ◀◀   ▶⏸   ▶▶  🔊   y    ↖    ↘    🔅   🔆   [    ]    \
+    ⎋    @a   @s   @d   @f   🔉   ◀    ▼    ▲    ▶    ;   '    ↩
+    ‹⇧   z    x    c    v    b    ⌫    ⌦    ,    .    /
+                            @␣
+)
