@@ -7,7 +7,7 @@
 }: let
   moduleName = "hyprland";
 
-	inherit (lib) mkDefault mkForce;
+  inherit (lib) mkDefault mkForce;
 in {
   config = lib.mkIf config.${moduleName}.enableModule {
     nix.settings = {
@@ -17,8 +17,8 @@ in {
 
     programs.uwsm.enable = true |> mkForce;
     programs.hyprland = let
-		  hyprPackages = inputs.hyprland.packages.${host.system};
-		in {
+      hyprPackages = inputs.hyprland.packages.${host.system};
+    in {
       enable = true |> mkForce;
       withUWSM = true |> mkForce;
 
