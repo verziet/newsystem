@@ -14,6 +14,11 @@
     flake-parts.url = "github:hercules-ci/flake-parts/main";
 
     hyprland.url = "github:hyprwm/hyprland/main";
+
+    spicetify-nix = {
+      url = "github:gerg-l/spicetify-nix/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs:
