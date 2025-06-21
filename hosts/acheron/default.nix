@@ -3,6 +3,7 @@
     [
       "${modules}/bootloader/grub"
       "${modules}/hardware/networkmanager"
+      "${modules}/hardware/pipewire"
 
       "${modules}/desktop/hyprland"
     ]
