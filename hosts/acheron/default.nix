@@ -5,13 +5,18 @@
       "${modules}/hardware/networkmanager"
       "${modules}/hardware/pipewire"
 
-      "${modules}/services/kanata"
-
       "${modules}/desktop/hyprland"
     ]
     ++ [
       ./hardware.nix
     ];
 
-  users.users.verz.extraGroups = ["wheel"];
+  boot.kernelModules = ["uinput"];
+  hardware.uinput.enable = true;
+
+  services.udev.extraRules = ''
+    KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+  '';
+
+  users.users.verz.extraGroups = ["wheel" "uinput" "input"];
 }

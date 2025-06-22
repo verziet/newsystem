@@ -25,9 +25,9 @@ in {
       package = hyprPackages.hyprland |> mkDefault;
       portalPackage = hyprPackages.xdg-desktop-portal-hyprland |> mkDefault;
     };
-  };
 
-  environment.variables.NIXOS_OZONE_WL = 1;
+    environment.variables.NIXOS_OZONE_WL = 1;
+  };
 
   options.${moduleName}.enableModule = lib.mkOption {
     description = "Enable the ${moduleName} module";
