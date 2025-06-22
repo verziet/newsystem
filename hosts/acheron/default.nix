@@ -4,6 +4,7 @@
       "${modules}/bootloader/grub"
       "${modules}/hardware/networkmanager"
       "${modules}/hardware/pipewire"
+      "${modules}/hardware/bluetooth"
 
       "${modules}/desktop/hyprland"
     ]
