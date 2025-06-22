@@ -27,6 +27,8 @@ in {
     };
   };
 
+  environment.variables.NIXOS_OZONE_WL = 1;
+
   options.${moduleName}.enableModule = lib.mkOption {
     description = "Enable the ${moduleName} module";
     default = true;
