@@ -2,6 +2,7 @@
   lib,
   config,
   inputs,
+  pkgs,
   host,
   modules,
   ...
@@ -16,7 +17,7 @@ in {
       package = inputs.hyprland.packages.${host.system}.hyprland |> mkDefault;
 
       settings = mkDefault {
-        exec-once = [
+        exec = lib.mkIf ((lib.elem pkgs.kanata-with-cmd config.home.packages) || (lib.elem pkgs.kanata config.home.packages)) [
           "uwsm app -- kanata -c ${modules}/desktop/kanata/kanata.kbd"
         ];
 
@@ -36,8 +37,8 @@ in {
 
             border_size = 1 |> mkDefault;
 
-            "col.active_border" = "rgba(00000000)" |> mkDefault;
-            "col.inactive_border" = "rgba(00000000)" |> mkDefault;
+            "col.active_border" = "rgba(ffffffff)" |> mkDefault;
+            "col.inactive_border" = "rgba(ffffffff)" |> mkDefault;
 
             resize_on_border = true |> mkDefault;
 
@@ -119,7 +120,12 @@ in {
             sensitivity = 0 |> mkDefault;
             repeat_delay = 250 |> mkDefault;
 
-            touchpad.natural_scroll = true |> mkDefault;
+            touchpad =
+              {
+                natural_scroll = true |> mkDefault;
+                tap-to-click = true |> mkDefault;
+              }
+              |> mkDefault;
           }
           |> mkDefault;
 
@@ -127,41 +133,14 @@ in {
           {
             #TODO
             workspace_swipe = true |> mkDefault;
-            workspace_swipe_invert = false |> mkDefault;
+            workspace_swipe_fingers = 3 |> mkDefault;
+            workspace_swipe_invert = true |> mkDefault;
             workspace_swipe_forever = true |> mkDefault;
+            workspace_swipe_cancel_ratio = 0.25 |> mkDefault;
           }
           |> mkDefault;
 
-        bind =
-          [
-            # Launching apps
-            "SUPER, Q, exec, uwsm app -- kitty"
-
-            # Desktop binds
-            "SUPER, C, killactive,"
-            "SUPER, M, exec, uwsm stop"
-
-            # Moving focus
-            "SUPER, H, movefocus, l"
-            "SUPER, L, movefocus, r"
-            "SUPER, K, movefocus, u"
-            "SUPER, J, movefocus, d"
-
-            # Switching workspaces
-            "SUPER, 1, workspace, 1"
-            "SUPER, 2, workspace, 2"
-            "SUPER, 3, workspace, 3"
-            "SUPER, 4, workspace, 4"
-            "SUPER, 5, workspace, 5"
-            "SUPER, 6, workspace, 6"
-            "SUPER, 7, workspace, 7"
-            "SUPER, 8, workspace, 8"
-            "SUPER, 9, workspace, 9"
-            "SUPER, 0, workspace, 10"
-
-            "SUPER, S, togglespecialworkspace, magic"
-          ]
-          |> mkDefault;
+        bind = pkgs |> import ./binds.nix |> mkDefault;
       };
     };
   };

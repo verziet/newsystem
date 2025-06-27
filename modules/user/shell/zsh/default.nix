@@ -18,6 +18,7 @@ in {
         {
           l = "ls -l";
           ll = "ls -l -A";
+          g = "git";
         }
         #(lib.mkIf config."bat".enableModule {
         #  cat = "bat -p";
