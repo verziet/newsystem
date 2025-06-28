@@ -22,6 +22,7 @@ in {
           g = "git";
           gs = "git status";
           ga = "git add";
+          gat = "git add --update";
           gr = "git restore";
           grs = "git restore --staged";
           gc = "git commit";
