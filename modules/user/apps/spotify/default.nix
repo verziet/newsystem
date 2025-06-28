@@ -39,6 +39,7 @@ in {
         adblock
         hidePodcasts
         shuffle
+        keyboardShortcut
       ];
 
       #theme = lib.mkDefault spicetifyPkgs.themes.text;
