@@ -16,17 +16,20 @@ in {
     };
 
     programs.uwsm.enable = true |> mkForce;
+
     programs.hyprland = let
       hyprPackages = inputs.hyprland.packages.${host.system};
     in {
       enable = true |> mkForce;
       withUWSM = true |> mkForce;
 
+      xwayland.enable = true |> mkDefault;
+
       package = hyprPackages.hyprland |> mkDefault;
       portalPackage = hyprPackages.xdg-desktop-portal-hyprland |> mkDefault;
     };
 
-    environment.variables.NIXOS_OZONE_WL = 1;
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
 
   options.${moduleName}.enableModule = lib.mkOption {
