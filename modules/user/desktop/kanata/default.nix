@@ -10,12 +10,16 @@
   inherit (lib) mkDefault mkForce;
 in {
   config = lib.mkIf config.${moduleName}.enableModule {
-    home.packages = with pkgs; [
-      kanata-with-cmd
-      brightnessctl
-      playerctl
-      wireplumber
-    ];
+    home = {
+      packages = with pkgs; [
+        kanata-with-cmd
+        brightnessctl
+        playerctl
+        wireplumber
+      ];
+
+      file."${config.xdg.configHome}/kanata/kanata.kbd".source = ./kanata.kbd;
+    };
   };
 
   options.${moduleName}.enableModule = lib.mkOption {
