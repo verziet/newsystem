@@ -29,7 +29,7 @@ in {
       portalPackage = hyprPackages.xdg-desktop-portal-hyprland |> mkDefault;
     };
 
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    environment.sessionVariables.NIXOS_OZONE_WL = "1" |> mkDefault;
   };
 
   options.${moduleName}.enableModule = lib.mkOption {

@@ -18,7 +18,7 @@ in {
         wireplumber
       ];
 
-      file."${config.xdg.configHome}/kanata/kanata.kbd".source = ./kanata.kbd;
+      file."${config.xdg.configHome}/kanata/kanata.kbd".source = ./kanata.kbd |> mkDefault;
     };
   };
 

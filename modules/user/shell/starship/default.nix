@@ -11,7 +11,7 @@ in {
     programs.starship = {
       enable = true |> mkForce;
 
-      enableZshIntegration = true |> mkDefault |> mkIf config.programs.zsh.enable;
+      enableZshIntegration = mkIf config.programs.zsh.enable (true |> mkDefault);
     };
   };
 

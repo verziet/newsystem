@@ -25,21 +25,20 @@ in {
         '';
       in {
         enable = true |> mkForce;
+
         configurationLimit = 10 |> mkDefault;
-        theme = pkgs.minimal-grub-theme |> mkDefault;
 
         useOSProber = true |> mkDefault;
         efiSupport = true |> mkDefault;
         device = "nodev" |> mkDefault;
 
+        theme = pkgs.minimal-grub-theme |> mkDefault;
         backgroundColor = "#000000" |> mkOverride 999;
         splashImage = null |> mkOverride 999;
 
-        extraInstallCommands =
-          ''
-            echo "${extraEntries}" >> /boot/grub/grub.cfg
-          ''
-          |> mkDefault;
+        extraInstallCommands = mkDefault ''
+          echo "${extraEntries}" >> /boot/grub/grub.cfg
+        '';
       };
     };
   };

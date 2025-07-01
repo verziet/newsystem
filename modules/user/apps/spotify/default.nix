@@ -19,7 +19,7 @@ in {
     in {
       enable = true |> mkForce;
 
-      enabledCustomApps = [
+      enabledCustomApps = mkDefault [
         {
           # The source of the customApp
           # make sure you're using the correct branch
@@ -35,14 +35,14 @@ in {
         }
       ];
 
-      enabledExtensions = with spicetifyPkgs.extensions; [
+      enabledExtensions = mkDefault (with spicetifyPkgs.extensions; [
         adblock
         hidePodcasts
         shuffle
         keyboardShortcut
-      ];
+      ]);
 
-      #theme = lib.mkDefault spicetifyPkgs.themes.text;
+      #theme = spicetifyPkgs.themes.text |> mkDefault;
     };
   };
 

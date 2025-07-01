@@ -14,27 +14,25 @@ in {
 
       syntaxHighlighting.enable = true |> mkDefault;
 
-      shellAliases = lib.mkMerge [
-        {
-          l = "ls -l";
-          ll = "ls -l -A";
+      shellAliases = {
+        l = "ls -l";
+        ll = "ls -l -A";
 
-          g = "git";
-          gs = "git status";
-          ga = "git add";
-          gat = "git add --update";
-          gr = "git restore";
-          grs = "git restore --staged";
-          gc = "git commit";
-          gp = "git push";
-          gl = "git pull";
-          gb = "git branch";
-          gco = "git checkout";
-        }
-        #(lib.mkIf config."bat".enableModule {
-        #  cat = "bat -p";
-        #})
-      ];
+        g = "git";
+        gs = "git status";
+        ga = "git add";
+        gat = "git add --update";
+        gr = "git restore";
+        grs = "git restore --staged";
+        gc = "git commit";
+        gp = "git push";
+        gl = "git pull";
+        gb = "git branch";
+        gco = "git checkout";
+      };
+      #(lib.mkIf config."bat".enableModule {
+      #  cat = "bat -p";
+      #})
 
       initContent = lib.readFile ./zshrc;
 
