@@ -13,9 +13,9 @@ in {
     home = {
       packages = with pkgs; [
         kanata-with-cmd
-        brightnessctl
-        playerctl
-        wireplumber
+				playerctl
+				brightnessctl
+				wireplumber
       ];
 
       file."${config.xdg.configHome}/kanata/kanata.kbd".source = ./kanata.kbd |> mkDefault;
