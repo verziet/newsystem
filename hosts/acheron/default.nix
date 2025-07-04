@@ -12,6 +12,8 @@
       ./hardware.nix
     ];
 
+  time.timeZone = "Europe/Prague";
+
   boot.kernelModules = ["uinput"];
   hardware.uinput.enable = true;
 
