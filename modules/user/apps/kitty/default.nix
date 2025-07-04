@@ -13,6 +13,7 @@ in {
 
       settings = {
         cursor_trail = 1 |> mkDefault;
+        background_opacity = 0.8 |> mkDefault;
       };
     };
   };
