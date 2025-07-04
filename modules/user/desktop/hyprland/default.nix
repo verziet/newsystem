@@ -16,6 +16,7 @@ in {
     ./binds.nix
     ./execs.nix
     ./style.nix
+    ./rules.nix
   ];
 
   config = lib.mkIf config.${moduleName}.enableModule {

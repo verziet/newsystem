@@ -16,6 +16,11 @@ lib.mkIf config.hyprland.enableModule {
         # --- Desktop Binds ---
         "SUPER, X, killactive,"
 
+        "SUPER, SPACE, global, quickshell:overviewToggle"
+
+        "SUPER, A, global, quickshell:sidebarLeftToggle"
+        "SUPER, SEMICOLON, global, quickshell:sidebarRightToggle"
+
         # --- Moving focus between windows ---
         "SUPER, H, movefocus, l"
         "SUPER, L, movefocus, r"

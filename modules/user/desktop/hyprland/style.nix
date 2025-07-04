@@ -14,7 +14,7 @@ lib.mkIf config.hyprland.enableModule {
       gaps_out = 10 |> mkDefault;
       gaps_workspaces = 0 |> mkDefault;
 
-      border_size = 1 |> mkDefault;
+      border_size = 0 |> mkDefault;
 
       "col.active_border" = "rgba(ffffffff)" |> mkDefault;
       "col.inactive_border" = "rgba(ffffffff)" |> mkDefault;
@@ -24,11 +24,15 @@ lib.mkIf config.hyprland.enableModule {
     };
 
     decoration = {
-      rounding = 10 |> mkDefault;
-      rounding_power = 4.0 |> mkDefault;
+			blur = {
+				enabled = false |> mkDefault;
+			};
 
-      active_opacity = 1.0 |> mkDefault;
-      inactive_opacity = 1.0 |> mkDefault;
+      rounding = 15 |> mkDefault;
+      rounding_power = 2 |> mkDefault;
+
+      active_opacity = 0.9 |> mkDefault;
+      inactive_opacity = 0.9 |> mkDefault;
       fullscreen_opacity = 1.0 |> mkDefault;
     };
 

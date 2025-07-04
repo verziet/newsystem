@@ -50,6 +50,7 @@ lib.mkIf config.hyprland.enableModule {
       touchpad = {
         natural_scroll = true |> mkDefault;
         tap-to-click = true |> mkDefault;
+				drag_lock = 0 |> mkDefault;
       };
     };
 
