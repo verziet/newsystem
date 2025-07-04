@@ -24,9 +24,9 @@ lib.mkIf config.hyprland.enableModule {
     };
 
     decoration = {
-			blur = {
-				enabled = false |> mkDefault;
-			};
+      blur = {
+        enabled = false |> mkDefault;
+      };
 
       rounding = 15 |> mkDefault;
       rounding_power = 2 |> mkDefault;

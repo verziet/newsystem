@@ -25,11 +25,11 @@ lib.mkIf config.hyprland.enableModule {
       "blur, quickshell:backgroundWidgets"
       "ignorealpha 0.05, quickshell:backgroundWidgets"
       "noanim, quickshell:screenshot"
-			"animation fade, quickshell:overview"
-			"blur, shell:bar"
-			"ignorezero, shell:bar"
-			"blur, shell:notifications"
-			"ignorealpha 0.1, shell:notifications"
+      "animation fade, quickshell:overview"
+      "blur, shell:bar"
+      "ignorezero, shell:bar"
+      "blur, shell:notifications"
+      "ignorealpha 0.1, shell:notifications"
     ];
   };
 }

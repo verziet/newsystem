@@ -10,7 +10,7 @@ lib.mkIf config.hyprland.enableModule {
   in {
     exec-once = lib.mkIf ((lib.elem pkgs.kanata-with-cmd config.home.packages) || (lib.elem pkgs.kanata config.home.packages)) (
       mkDefault [
-				"uwsm app -- qs &"
+        "uwsm app -- qs &"
         "uwsm app -- kanata"
       ]
     );
