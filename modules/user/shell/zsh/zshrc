@@ -36,7 +36,7 @@ function _switch() {
 compdef _switch switch
 
 shell() {
-  nix shell --impure "${(@)argv/#/nixpkgs#}"
+  nix shell --impure "${(@)argv/#/nixpkgs#}" --command "zsh"
 }
 
 run() {
