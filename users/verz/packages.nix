@@ -9,7 +9,9 @@
       inputs.zen-browser.packages."${host.system}".default
     ]
     ++ (with pkgs; [
-      gemini-cli
       stremio
+      gemini-cli
+
+			swww
     ]);
 }
