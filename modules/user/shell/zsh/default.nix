@@ -29,6 +29,7 @@ in {
         gl = "git pull";
         gb = "git branch";
         gco = "git checkout";
+        gd = "git diff";
       };
       #(lib.mkIf config."bat".enableModule {
       #  cat = "bat -p";
