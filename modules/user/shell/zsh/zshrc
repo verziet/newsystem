@@ -36,7 +36,7 @@ function _switch() {
 compdef _switch switch
 
 shell() {
-  nix develop --impure ".#$1" --command "zsh" 2> /dev/null || {
+  nix develop --impure ".#$1" --command "zsh" || {
 		nix shell --impure "${(@)argv/#/nixpkgs#}" --command "zsh"
   }
 }
@@ -48,7 +48,7 @@ run() {
     shift
   fi
 
-  nix run --impure ".#$pkg" -- "$@" 2> /dev/null || {
+  nix run --impure ".#$pkg" -- "$@" || {
     nix run --impure "nixpkgs#$pkg" -- "$@"
   }
 }
